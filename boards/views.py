@@ -8,6 +8,8 @@ from django.http import HttpResponse, Http404
 
 
 from django.contrib.auth.models import User
+
+
 def home(request):
     boards = Board.objects.all()
     return render(request, 'home.html', {'boards': boards})
