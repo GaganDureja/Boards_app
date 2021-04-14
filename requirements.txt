@@ -1,0 +1,54 @@
+Some installation required to run this project maybe you have some of these already fulfilled.
+
+Run the following commands in Command Prompt/Terminal as per your system os.
+
+
+
+1) Install Python3:-
+
+	Linux:
+		sudo apt install python3.6
+	Win:
+		https://python.org/ (download executable installer)
+	Mac:
+		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		brew install python3
+
+
+
+
+
+2) Install Virtualenv:-
+
+	Linux:
+		wget https://bootstrap.pypa.io/get-pip.py
+		sudo python3.6 get-pip.py
+		sudo pip3.6 install virtualenv
+	Win:
+		pip install virtualenv
+	Mac:
+		sudo pip3 install virtualenv
+
+
+
+
+
+
+3) Install Django:-
+	
+	pip install django
+	
+
+
+
+4) Install widget-tweaks:-	
+	
+	pip install django-widget-tweaks
+	
+
+	
+
+
+
+
+
