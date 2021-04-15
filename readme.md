@@ -8,9 +8,13 @@ To start the project you must go through all steps of requirements mentioned in 
 
 
 
-After that go to the directory in CMD/Terminal where you can see manage.py and  write the following command:-
+After that go to the directory in CMD/Terminal where you can see manage.py and  write the following command:-	
 
-	python3 manage.py runserver
+		python3 manage.py runserver
+		or 
+		python manage.py runserver
+
+
 
 
 
