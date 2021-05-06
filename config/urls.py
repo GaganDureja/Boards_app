@@ -50,6 +50,6 @@ urlpatterns = [
 
 
 	path(r'boards/<int:pk>/', views.board_topics, name='board_topics'),
-	path(r'boards/<int:pk>/new/', views.new_topic, name='new_topic'),
+	path(r'boards/<int:pk>/topics/new/', views.new_topic, name='new_topic'),
     path('admin/', admin.site.urls),
 ]

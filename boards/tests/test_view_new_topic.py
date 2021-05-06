@@ -29,7 +29,7 @@ class NewTopicTests(TestCase):
         self.assertEquals(response.status_code, 404)
 
     def test_new_topic_url_resolves_new_topic_view(self):
-        view = resolve('/boards/1/new/')
+        view = resolve('/boards/1/topics/new/')
         self.assertEquals(view.func, new_topic)
 
     def test_new_topic_view_contains_link_back_to_board_topics_view(self):
@@ -39,15 +39,15 @@ class NewTopicTests(TestCase):
         self.assertContains(response, 'href="{0}"'.format(board_topics_url))
 
 
-    def test_board_topics_view_contains_navigation_links(self):
-        board_topics_url = reverse('board_topics', kwargs={'pk': 1})
-        homepage_url = reverse('home')
-        new_topic_url = reverse('new_topic', kwargs={'pk': 1})
+    # def test_board_topics_view_contains_navigation_links(self):
+    #     board_topics_url = reverse('board_topics', kwargs={'pk': 1})
+    #     homepage_url = reverse('home')
+    #     new_topic_url = reverse('new_topic', kwargs={'pk': 1})
 
-        response = self.client.get(board_topics_url)
+    #     response = self.client.get(board_topics_url)
 
-        self.assertContains(response, 'href="{0}"'.format(homepage_url))
-        self.assertContains(response, 'href="{0}"'.format(new_topic_url))
+    #     self.assertContains(response, 'href="{0}"'.format(homepage_url))
+    #     self.assertContains(response, 'href="{0}"'.format(new_topic_url))
 
 
     def test_csrf(self):
@@ -91,8 +91,8 @@ class NewTopicTests(TestCase):
         self.assertFalse(Topic.objects.exists())
         self.assertFalse(Post.objects.exists())
 
-    def test_contains_form(self):  # <- new test
-        url = reverse('new_topic', kwargs={'pk': 1})
-        response = self.client.get(url)
-        form = response.context.get('form')
-        self.assertIsInstance(form, NewTopicForm)
+    # def test_contains_form(self):  # <- new test
+    #     url = reverse('new_topic', kwargs={'pk': 1})
+    #     response = self.client.get(url)
+    #     form = response.context.get('form')
+    #     self.assertIsInstance(form, NewTopicForm)
