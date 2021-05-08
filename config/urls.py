@@ -49,7 +49,24 @@ urlpatterns = [
     name='password_change_done'),
 
 
-	path(r'boards/<int:pk>/', views.board_topics, name='board_topics'),
-	path(r'boards/<int:pk>/topics/new/', views.new_topic, name='new_topic'),
+	# path(r'boards/<int:pk>/', views.board_topics, name='board_topics'),
+	# path(r'boards/<int:pk>/new/', views.new_topic, name='new_topic'),
+
+    path(r'boards/', views.list_boards, name='list_boards'),
+    # path(r'boards/<int:id>/', views.show_board, name='show_board'),
+    path(r'boards/<int:pk>/topics', views.board_topics, name='board_topics'),
+    path(r'boards/<int:pk>/topics/new/', views.board_new_topic, name='board_new_topic'),
+    # path(r'boards/<int:board_id>/topics/<int:id>/', views.boards.topics.show, name='board_show_topic'),
+
+
+# added by sahil
+
+# path(r'boards/', views.boards.list, name='list_boards'),
+#     path(r'boards/<int:pk>/', views.boards.show, name='show_board'),
+#     path(r'boards/<int:pk>/topics', views.boards.topics, name='board_topics'),
+#     path(r'boards/<int:pk>/topics/new/', views.boards.topics.new, name='board_new_topic'),
+#     path(r'boards/<int:board_id>/topics/<int:id>/', views.boards.topics.show, name='board_show_topic'),
+
+
     path('admin/', admin.site.urls),
 ]
