@@ -3,6 +3,8 @@ from django.test import TestCase
 # Create your tests here.
 from django.contrib.auth.models import User
 from django.urls import reverse, resolve
+
+
 from ..views import board_new_topic
 from ..models import Board, Topic, Post
 from ..forms import NewTopicForm
@@ -17,7 +19,8 @@ class NewTopicTests(TestCase):
     def setUp(self):
         Board.objects.create(name='Django', description='Django board.')
         User.objects.create_user(username='john', email='john@doe.com', password='123')  # <- included this line here
-
+        self.client.login(username='john', password='123')
+        
     def test_new_topic_view_success_status_code(self):
         url = reverse('board_new_topic', kwargs={'pk': 1})
         response = self.client.get(url)
@@ -39,15 +42,15 @@ class NewTopicTests(TestCase):
         self.assertContains(response, 'href="{0}"'.format(board_topics_url))
 
 
-    def test_board_topics_view_contains_navigation_links(self):
-        board_topics_url = reverse('board_topics', kwargs={'pk': 1})
-        homepage_url = reverse('home')
-        new_topic_url = reverse('board_new_topic', kwargs={'pk': 1})
+    # def test_board_topics_view_contains_navigation_links(self):
+    #     board_topics_url = reverse('board_topics', kwargs={'pk': 1})
+    #     homepage_url = reverse('home')
+    #     new_topic_url = reverse('board_new_topic', kwargs={'pk': 1})
 
-        response = self.client.get(board_topics_url)
+    #     response = self.client.get(board_topics_url)
 
-        self.assertContains(response, 'href="{0}"'.format(homepage_url))
-        self.assertContains(response, 'href="{0}"'.format(new_topic_url))
+    #     self.assertContains(response, 'href="{0}"'.format(homepage_url))
+    #     self.assertContains(response, 'href="{0}"'.format(new_topic_url))
 
 
     def test_csrf(self):
@@ -96,3 +99,15 @@ class NewTopicTests(TestCase):
         response = self.client.get(url)
         form = response.context.get('form')
         self.assertIsInstance(form, NewTopicForm)
+
+
+
+class LoginRequiredNewTopicTests(TestCase):
+    def setUp(self):
+        Board.objects.create(name='Django', description='Django board.')
+        self.url = reverse('board_new_topic', kwargs={'pk': 1})
+        self.response = self.client.get(self.url)
+
+    def test_redirection(self):
+        login_url = reverse('login')
+        self.assertRedirects(self.response, '{login_url}?next={url}'.format(login_url=login_url, url=self.url))
