@@ -54,7 +54,7 @@ urlpatterns = [
 
     path(r'boards/', views.list_boards, name='list_boards'),
     # path(r'boards/<int:id>/', views.show_board, name='show_board'),
-    path(r'boards/<int:pk>/topics', views.board_topics, name='board_topics'),
+    path(r'boards/<int:pk>/topics/', views.board_topics, name='board_topics'),
     path(r'boards/<int:pk>/topics/new/', views.board_new_topic, name='board_new_topic'),
     # path(r'boards/<int:board_id>/topics/<int:id>/', views.boards.topics.show, name='board_show_topic'),
 
@@ -67,6 +67,9 @@ urlpatterns = [
 #     path(r'boards/<int:pk>/topics/new/', views.boards.topics.new, name='board_new_topic'),
 #     path(r'boards/<int:board_id>/topics/<int:id>/', views.boards.topics.show, name='board_show_topic'),
 
+    
+
+    path(r'boards/<int:board_pk>/topics/<int:pk>/', views.topic_posts, name='topic_posts'),
 
     path('admin/', admin.site.urls),
 ]
