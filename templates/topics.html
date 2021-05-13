@@ -18,6 +18,7 @@
       	<table class="table">
     <thead class="thead-inverse">
       <tr>
+        <th>S.no</th>
         <th>Topic</th>
         <th>Starter</th>
         <th>Replies</th>
@@ -25,9 +26,10 @@
         <th>Last Update</th>
       </tr>
     </thead>
-    <tbody>
-      {% for topic in topics %}
+    <tbody>      
+      {% for topic in topics %}      
         <tr>
+          <td>{{ forloop.counter }}</td>
           <td><a href="{% url 'topic_posts' board.pk topic.pk %}">{{ topic.subject }}</a></td>          
           <td>{{ topic.starter.username }}</td>
           <td>{{ topic.replies }}</td>
