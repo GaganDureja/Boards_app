@@ -73,5 +73,8 @@ urlpatterns = [
 
     path(r'boards/<int:board_pk>/topics/<int:pk>/reply/', views.reply_topic, name='reply_topic'),
 
+    path(r'boards/<int:board_pk>/topics/<int:pk>/posts/<int:post_pk>/edit/',
+        views.PostUpdateView.as_view(), name='edit_post'),
+
     path('admin/', admin.site.urls),
 ]
