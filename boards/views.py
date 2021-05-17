@@ -23,6 +23,11 @@ from django.views.generic import ListView
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+from django.urls import reverse
+
+
+
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
@@ -134,7 +139,18 @@ def reply_topic(request, board_pk, pk):
             post.topic = topic
             post.created_by = request.user
             post.save()
-            return redirect('topic_posts', board_pk=board_pk, pk=pk)
+
+            topic.last_updated = timezone.now()
+            topic.save()
+
+            topic_url = reverse('topic_posts', kwargs={'board_pk': board_pk, 'pk': pk})
+            topic_post_url = '{url}?page={page}#{id}'.format(
+                url=topic_url,
+                id=post.pk,
+                page=topic.get_page_count()
+            )
+
+            return redirect(topic_post_url)
     else:
         form = PostForm()
     return render(request, 'reply_topic.html', {'topic': topic, 'form': form})
