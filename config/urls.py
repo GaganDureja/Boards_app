@@ -69,7 +69,7 @@ urlpatterns = [
 
     
 
-    path(r'boards/<int:board_pk>/topics/<int:pk>/', views.topic_posts, name='topic_posts'),
+    path(r'boards/<int:board_pk>/topics/<int:pk>/', views.PostListView.as_view(), name='topic_posts'),
 
     path(r'boards/<int:board_pk>/topics/<int:pk>/reply/', views.reply_topic, name='reply_topic'),
 
