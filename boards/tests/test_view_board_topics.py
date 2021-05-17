@@ -3,7 +3,7 @@ from django.test import TestCase
 # Create your tests here.
 
 from django.urls import reverse, resolve
-from ..views import board_topics
+from ..views import TopicListView
 from ..models import Board 
 
 
@@ -28,10 +28,11 @@ class BoardTopicsTests(TestCase):
 
     def test_board_topics_url_resolves_board_topics_view(self):
         view = resolve('/boards/1/topics/')
-        self.assertEquals(view.func, board_topics)        
+        self.assertEquals(view.func.view_class, TopicListView)  
 
     def test_board_topics_view_contains_link_back_to_homepage(self):
         board_topics_url = reverse('board_topics', kwargs={'pk': 1})
         response = self.client.get(board_topics_url)
         homepage_url = reverse('home')
         self.assertContains(response, 'href="{0}"'.format(homepage_url))
+
