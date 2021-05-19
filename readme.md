@@ -3,7 +3,7 @@ A project where user can login and post a message or share a post Something like
 
 
 
-To start the project you must go through all steps of requirements mentioned in requirements.txt file.
+To start the project you must go through all steps of requirements mentioned in installation.txt file.
 
 
 
